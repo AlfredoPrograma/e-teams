@@ -1,9 +1,8 @@
+import { RouterProvider } from "react-router-dom";
+import { appRouter } from "routes";
+
 const App = () => {
-  return (
-    <div>
-      <h1 className="text-red-400">INIT E-TEAMS APP</h1>
-    </div>
-  );
+  return <RouterProvider router={appRouter} />;
 };
 
 export default App;
