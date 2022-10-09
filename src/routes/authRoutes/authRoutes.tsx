@@ -1,9 +1,8 @@
+import { RouteObject } from "react-router-dom";
 import { APP_ROUTES } from "constants/APP_ROUTES";
 import { AuthLayout } from "layouts/AuthLayout";
-import { LoginPage } from "pages/LoginPage";
+import { LoginPage, RegisterPage } from "modules/Auth/pages";
 import { NotFoundPage } from "pages/NotFoundPage";
-import { RegisterPage } from "pages/RegisterPage";
-import { RouteObject } from "react-router-dom";
 
 const { AUTH, ERROR } = APP_ROUTES;
 

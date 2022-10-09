@@ -2,9 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
   return (
-    <div>
-      <header className="bg-sky-300 p-4">Auth</header>
-
+    <div className="h-full bg-gray-300 grid place-items-center">
       <Outlet />
     </div>
   );
