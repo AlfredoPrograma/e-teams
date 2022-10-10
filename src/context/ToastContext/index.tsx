@@ -1,6 +1,4 @@
-import { ToastContext } from "./context";
-import { ToastContextProvider } from "./provider";
+import { ToastContext } from "./ToastContext";
+import { ToastContextProvider } from "./ToastContextProvider";
 
 export { ToastContext, ToastContextProvider };
-
-// TODO: change ./context and ./provider into large names

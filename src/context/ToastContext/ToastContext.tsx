@@ -1,10 +1,9 @@
 import { createContext } from "react";
-
-type ToastColors = "success" | "error" | "warning";
+import { AlertColors } from "types";
 
 interface ToastConfigInterface {
   message: string;
-  color: ToastColors;
+  color: AlertColors;
   icon?: JSX.Element;
   canClose?: boolean;
   delay?: number;
@@ -25,5 +24,5 @@ const ToastContext = createContext<ToastContextStateInterface | undefined>(
   undefined,
 );
 
-export type { ToastConfigInterface, ToastColors };
+export type { ToastConfigInterface };
 export { ToastContext };

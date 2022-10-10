@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Children } from "types/Children";
-import { ToastConfigInterface, ToastContext } from "./context";
+import { ToastConfigInterface, ToastContext } from "./ToastContext";
 
-// TODO: export types into another file
 interface ToastContextProviderProps {
   children: Children;
 }
