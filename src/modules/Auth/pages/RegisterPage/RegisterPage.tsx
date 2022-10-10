@@ -1,10 +1,11 @@
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "components/Button";
 import { Textfield } from "components/Textfield";
 import { APP_ROUTES } from "constants/APP_ROUTES";
 import { FormCard } from "modules/Auth/components/FormCard";
-import { useAuthMutations } from "modules/Auth/hooks/useAuthMutations";
+import { useRegisterHandlers } from "modules/Auth/hooks/useRegisterHandlers";
 import { FormEvent, useState } from "react";
-import { redirect } from "react-router-dom";
+import { registerWithCredentials } from "services/supabase/auth";
 
 interface RegisterFormInterface {
   email: string;
@@ -18,11 +19,19 @@ const INITIAL_FORM_DATA: RegisterFormInterface = {
   repeatedPassword: "",
 };
 const RegisterPage = () => {
-  const { registerMutation } = useAuthMutations();
   const [formData, setFormData] =
     useState<RegisterFormInterface>(INITIAL_FORM_DATA);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const { handleRedirectToVerify, handleError } = useRegisterHandlers();
+  const { mutate: registerMutation, isLoading } = useMutation(
+    registerWithCredentials,
+    {
+      onSuccess: (response) => handleRedirectToVerify(response, formData.email),
+      onError: (error) => handleError(error),
+    },
+  );
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { repeatedPassword, email, password } = formData;
 
@@ -30,14 +39,7 @@ const RegisterPage = () => {
       return;
     }
 
-    try {
-      await registerMutation({ email, password });
-      redirect(APP_ROUTES.AUTH.INDEX);
-    } catch (error) {
-      console.log(error);
-    }
-
-    console.log(formData);
+    registerMutation({ email, password });
   };
 
   return (
@@ -90,9 +92,12 @@ const RegisterPage = () => {
           leftAddon={<i className="fas fa-lock" />}
         />
 
-        <Button>Create</Button>
+        <Button disabled={isLoading} isLoading={isLoading} includeSpinner>
+          Create
+        </Button>
       </form>
     </FormCard>
   );
 };
+
 export default RegisterPage;

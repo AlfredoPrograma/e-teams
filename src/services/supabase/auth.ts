@@ -6,8 +6,7 @@ const { auth: supabaseAuth } = supabaseClient;
 const logInWithCredentials = async (credentials: CredentialsInterface) =>
   await supabaseAuth.signInWithPassword(credentials);
 
-const registerWithCredentials = async (credentials: CredentialsInterface) => {
+const registerWithCredentials = async (credentials: CredentialsInterface) =>
   await supabaseAuth.signUp(credentials);
-};
 
 export { logInWithCredentials, registerWithCredentials };
