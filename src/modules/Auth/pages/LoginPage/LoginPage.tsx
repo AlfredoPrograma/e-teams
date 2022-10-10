@@ -3,9 +3,9 @@ import { Button } from "components/Button";
 import { Textfield } from "components/Textfield";
 import { APP_ROUTES } from "constants/APP_ROUTES";
 import { FormCard } from "modules/Auth/components/FormCard";
+import { useLogInHandlers } from "modules/Auth/hooks/useLogInHandlers";
 import { CredentialsInterface } from "modules/Auth/types/Credentials";
 import { useState, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
 import { logInWithCredentials } from "services/supabase/auth";
 
 interface LoginFormInterface extends CredentialsInterface {}
@@ -16,17 +16,13 @@ const INITIAL_FORM_DATA: LoginFormInterface = {
 };
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  const { handleError, handleLogIn } = useLogInHandlers();
+
   const { mutate: loginMutation, isLoading } = useMutation(
     logInWithCredentials,
     {
-      onSuccess: (response) => {
-        if (!response.data.user) {
-          return console.log("invalid credentials");
-        }
-
-        navigate("/home");
-      },
+      onSuccess: handleLogIn,
+      onError: handleError,
     },
   );
 
