@@ -1,14 +1,23 @@
 import { AuthResponse } from "@supabase/supabase-js";
 import { APP_ROUTES } from "constants/APP_ROUTES";
-import { FormEvent } from "react";
+import { useToast } from "hooks/useToast";
 import { useNavigate } from "react-router-dom";
 
 const useRegisterHandlers = () => {
+  const {
+    handlers: { show },
+  } = useToast();
   const navigate = useNavigate();
 
   const handleRedirectToVerify = (response: AuthResponse, email: string) => {
     if (response.error) {
-      return console.log(response);
+      // EXAMPLE: HOW TO USE TOAST
+      show({
+        color: "error",
+        message: response.error.message,
+      });
+
+      return;
     }
 
     navigate(
