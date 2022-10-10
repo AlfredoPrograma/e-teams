@@ -30,7 +30,7 @@ const Button = ({
   return (
     <button
       className={classNames(
-        "flex justify-center border-2 px-3 py-2 rounded-md font-bold transition-all",
+        "flex justify-center border-2 px-3 py-3 rounded-lg font-bold transition-all",
         BUTTON_VARIANT_CLASSNAMES[variant],
         className,
       )}

@@ -73,7 +73,7 @@ const LoginPage = () => {
         />
 
         <Button
-          variant="outlined"
+          variant="contained"
           disabled={isLoading}
           isLoading={isLoading}
           includeSpinner
