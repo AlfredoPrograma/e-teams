@@ -5,8 +5,8 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     colors: {
-      primary: colors.yellow,
-      secondary: colors.purple,
+      primary: colors.orange,
+      secondary: colors.indigo,
       success: colors.green,
       warning: colors.amber,
       danger: colors.red,
