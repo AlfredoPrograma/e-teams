@@ -3,7 +3,6 @@ import { Button } from "components/Button";
 import { Textfield } from "components/Textfield";
 import { APP_ROUTES } from "constants/APP_ROUTES";
 import { FormCard } from "modules/Auth/components/FormCard";
-import { useAuthMutations } from "modules/Auth/hooks/useAuthMutations";
 import { CredentialsInterface } from "modules/Auth/types/Credentials";
 import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
@@ -41,23 +40,28 @@ const LoginPage = () => {
   };
   return (
     <FormCard
-      title="Sign in"
+      title="Welcome to E-Teams"
       footerText="Don't have an account yet?"
       footerLinkText="Create one!"
       footerLinkTo={APP_ROUTES.AUTH.REGISTER}
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <Textfield
+          label="E-mail"
           type="text"
           placeholder="E-mail"
+          id="login-page-email"
           onChange={(event) =>
             setFormData((prev) => ({ ...prev, email: event.target.value }))
           }
           name="email"
           value={formData.email}
+          leftAddon={<i className="fas fa-envelope" />}
         />
 
         <Textfield
+          label="Password"
+          id="login-page-password"
           type="password"
           placeholder="******"
           onChange={(event) =>
@@ -65,9 +69,15 @@ const LoginPage = () => {
           }
           name="password"
           value={formData.password}
+          leftAddon={<i className="fas fa-lock" />}
         />
 
-        <Button disabled={isLoading} isLoading={isLoading} includeSpinner>
+        <Button
+          variant="outlined"
+          disabled={isLoading}
+          isLoading={isLoading}
+          includeSpinner
+        >
           Sign in
         </Button>
       </form>

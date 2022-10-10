@@ -17,17 +17,24 @@ const FormCard = ({
   footerLinkTo,
 }: FormCardProps) => {
   return (
-    <section className="px-8 py-6 bg-white shadow-xl rounded-md flex flex-col gap-6">
+    <section className="rounded-lg flex flex-col gap-6">
       <header>
-        <h1 className="text-center text-3xl font-bold">{title}</h1>
+        <h1 className="text-center text-5xl text-primary-500 font-bold">
+          {title}
+        </h1>
       </header>
 
       <div>{children}</div>
 
       <footer className="text-center">
-        <small>
-          {footerText} <Link to={footerLinkTo}>{footerLinkText}</Link>
-        </small>
+        <p>
+          {footerText}{" "}
+          <Link to={footerLinkTo}>
+            <span className="text-primary-500 font-bold transition-all hover:text-primary-600">
+              {footerLinkText}
+            </span>
+          </Link>
+        </p>
       </footer>
     </section>
   );
