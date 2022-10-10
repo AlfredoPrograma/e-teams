@@ -49,16 +49,21 @@ const RegisterPage = () => {
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <Textfield
+          label="E-mail"
           type="email"
           placeholder="E-mail"
+          id="register-page-email"
           onChange={(event) =>
             setFormData((prev) => ({ ...prev, email: event.target.value }))
           }
           name="email"
           value={formData.email}
+          leftAddon={<i className="fas fa-envelope" />}
         />
 
         <Textfield
+          label="Password"
+          id="register-page-password"
           type="password"
           placeholder="******"
           onChange={(event) =>
@@ -66,9 +71,12 @@ const RegisterPage = () => {
           }
           name="password"
           value={formData.password}
+          leftAddon={<i className="fas fa-lock" />}
         />
 
         <Textfield
+          label="Repeat password"
+          id="register-page-repeat-password"
           type="password"
           placeholder="******"
           onChange={(e) =>
@@ -79,6 +87,7 @@ const RegisterPage = () => {
           }
           name="repeatedPassword"
           value={formData.repeatedPassword}
+          leftAddon={<i className="fas fa-lock" />}
         />
 
         <Button>Create</Button>

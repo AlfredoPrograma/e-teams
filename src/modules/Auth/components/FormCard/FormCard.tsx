@@ -17,7 +17,7 @@ const FormCard = ({
   footerLinkTo,
 }: FormCardProps) => {
   return (
-    <section className="rounded-lg flex flex-col gap-6">
+    <section className="rounded-lg flex flex-col gap-6 w-3/4 md:1/2 xl:w-1/4">
       <header>
         <h1 className="text-center text-5xl text-primary-500 font-bold">
           {title}
