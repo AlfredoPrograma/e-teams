@@ -9,4 +9,6 @@ const logInWithCredentials = async (credentials: CredentialsInterface) =>
 const registerWithCredentials = async (credentials: CredentialsInterface) =>
   await supabaseAuth.signUp(credentials);
 
-export { logInWithCredentials, registerWithCredentials };
+const getSession = async () => await supabaseAuth.getSession();
+
+export { logInWithCredentials, registerWithCredentials, getSession };

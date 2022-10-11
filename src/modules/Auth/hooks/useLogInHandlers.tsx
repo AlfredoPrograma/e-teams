@@ -1,4 +1,5 @@
 import { AuthResponse } from "@supabase/supabase-js";
+import { APP_ROUTES } from "constants/APP_ROUTES";
 import { useToast } from "hooks/useToast";
 import { useNavigate } from "react-router-dom";
 
@@ -19,8 +20,7 @@ const useLogInHandlers = () => {
       return;
     }
 
-    // TODO: SET HOME ROUTE
-    navigate("/home");
+    navigate(APP_ROUTES.DASHBOARD.INDEX);
   };
 
   const handleError = () =>

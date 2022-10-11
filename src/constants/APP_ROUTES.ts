@@ -1,4 +1,8 @@
 const APP_ROUTES = {
+  DASHBOARD: {
+    INDEX: "/dashboard",
+  },
+
   AUTH: {
     INDEX: "/auth",
     REGISTER: `register`,

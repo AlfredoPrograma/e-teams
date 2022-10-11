@@ -11,7 +11,6 @@ const useRegisterHandlers = () => {
 
   const handleRedirectToVerify = (response: AuthResponse, email: string) => {
     if (response.error) {
-      // EXAMPLE: HOW TO USE TOAST
       show({
         color: "error",
         message: response.error.message,

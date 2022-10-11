@@ -10,7 +10,7 @@ import { NotFoundPage } from "pages/NotFoundPage";
 
 const { AUTH, ERROR } = APP_ROUTES;
 
-const authRoutes: RouteObject[] = [
+const AUTH_ROUTES: RouteObject[] = [
   {
     path: AUTH.INDEX,
     element: <AuthLayout />,
@@ -35,4 +35,4 @@ const authRoutes: RouteObject[] = [
   },
 ];
 
-export default authRoutes;
+export default AUTH_ROUTES;
