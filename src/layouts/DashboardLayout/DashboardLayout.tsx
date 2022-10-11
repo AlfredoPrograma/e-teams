@@ -1,5 +1,6 @@
 import { APP_ROUTES } from "constants/APP_ROUTES";
 import useSession from "hooks/useSession";
+import { NavBar } from "modules/Dashboard/components/NavBar";
 import { Navigate, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
@@ -12,7 +13,8 @@ const DashboardLayout = () => {
     return <Navigate to={APP_ROUTES.AUTH.INDEX} replace />;
 
   return (
-    <div className="bg-success-300">
+    <div className="h-full w-full bg-neutral-200 flex flex-col">
+      <NavBar />
       <Outlet />
     </div>
   );
