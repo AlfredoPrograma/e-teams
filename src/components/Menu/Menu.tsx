@@ -1,9 +1,10 @@
-import { offset, useFloating } from "@floating-ui/react-dom";
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import { offset, Placement, useFloating } from "@floating-ui/react-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { generateAnimationData } from "helpers/generateAnimationData";
+import { BaseAnimation } from "types";
+import { MenuItemProps, MenuItem } from "./MenuItem";
 
-// TODO: ANIMATIONS MUST BE A PROP (FLOATING MENUS MUST BE GENERIC AND ADABTABLE TO ANIMATIONS)
-const MENU_ANIMATIONS: Variants = {
+const DEFAULT_MENU_ANIMATION: BaseAnimation = {
   initial: {
     y: -25,
     opacity: 0,
@@ -18,17 +19,27 @@ const MENU_ANIMATIONS: Variants = {
   },
 };
 
-const ANIMATION_DATA = generateAnimationData(MENU_ANIMATIONS);
-
 interface MenuProps {
-  options: string[];
+  options: MenuItemProps[];
   openButtonElement: JSX.Element;
   isOpen: boolean;
+  animation?: BaseAnimation;
+  placement?: Placement;
 }
 
-const Menu = ({ options, openButtonElement, isOpen }: MenuProps) => {
+const Menu = ({
+  options,
+  openButtonElement,
+  animation,
+  isOpen,
+  placement,
+}: MenuProps) => {
+  const ANIMATION_DATA = generateAnimationData(
+    animation ?? DEFAULT_MENU_ANIMATION,
+  );
   const { x, y, reference, floating, strategy } = useFloating({
     middleware: [offset(10)],
+    placement,
   });
 
   const FLOATING_STYLE = {
@@ -39,7 +50,9 @@ const Menu = ({ options, openButtonElement, isOpen }: MenuProps) => {
 
   return (
     <>
-      <div ref={reference}>{openButtonElement}</div>
+      <div className="grid place-items-center" ref={reference}>
+        {openButtonElement}
+      </div>
       <AnimatePresence>
         {isOpen ? (
           <motion.ul
@@ -50,17 +63,7 @@ const Menu = ({ options, openButtonElement, isOpen }: MenuProps) => {
             {...ANIMATION_DATA}
           >
             {options.map((option) => (
-              // TODO: IMPROVE MENU ITEM COMPONENT
-              // GENERIC ICONS
-              // GENERIC TEXT
-              // GENERIC FUNCTIONALITY
-              <li
-                key={option}
-                className="flex gap-4 items-center uppercase px-6 cursor-pointer hover:text-secondary-500"
-              >
-                <i className="fas fa-user text-sm" />
-                <span>{option}</span>
-              </li>
+              <MenuItem key={option.text} {...option} />
             ))}
           </motion.ul>
         ) : null}
@@ -69,4 +72,4 @@ const Menu = ({ options, openButtonElement, isOpen }: MenuProps) => {
   );
 };
 
-export default Menu;
+export { Menu };
