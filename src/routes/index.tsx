@@ -1,14 +1,14 @@
 import { AUTH_ROUTES } from "./AuthRoutes";
 import { DASHBOARD_ROUTES } from "./DashboardRoutes";
-import { createBrowserRouter } from "react-router-dom";
-import { NotFoundPage } from "pages/NotFoundPage";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import { APP_ROUTES } from "constants/APP_ROUTES";
 
 const ROUTER = createBrowserRouter([
   ...AUTH_ROUTES,
   ...DASHBOARD_ROUTES,
   {
     path: "*",
-    element: <NotFoundPage />,
+    element: <Navigate to={APP_ROUTES.AUTH.INDEX} replace />,
   },
 ]);
 
