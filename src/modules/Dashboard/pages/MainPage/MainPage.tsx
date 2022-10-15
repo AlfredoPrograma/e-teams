@@ -1,4 +1,4 @@
-import DashboardPage from "modules/Dashboard/components/DashboardPage/DashboardPage";
+import { DashboardPage } from "modules/Dashboard/components/DashboardPage";
 
 const EXAMPLE_COLUMNS = ["to-do", "in-progress", "done", "qa", "testing"];
 

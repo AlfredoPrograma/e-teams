@@ -21,6 +21,7 @@ const PROFILE_MENU: MenuItemProps[] = [
 
 const NavBar = () => {
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState(false);
+  const handleCloseMenu = () => setIsOpenProfileMenu(false);
 
   return (
     <nav className="px-24 py-4 bg-primary-500 flex justify-between items-center shadow-md">
@@ -30,6 +31,7 @@ const NavBar = () => {
 
       {/* TODO: HERE MUST BE THE NAME */}
       <Menu
+        closeHandler={handleCloseMenu}
         isOpen={isOpenProfileMenu}
         options={PROFILE_MENU}
         openButtonElement={
